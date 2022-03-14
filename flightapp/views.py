@@ -14,28 +14,26 @@ def find_flights(request):
       serializer=FlightSerializer(flights,many=True)
       return Response(serializer.data)
 
-''' tested in postman , and there is an error, IntegrityError at /save_reservation/
-null value in column "passanger_id" of relation "flightapp_reservation" violates not-null constraint , I used postgres , maybe thats why, I might need to ALTER TABLE flightapp.passenger ALTER COLUMN passanger_id" DROP NOT NULL;'''
 
-# @api_view(['POST'])
-# def save_reservation(request):
-#       flight = Flight.objects.get(id=request.data['flightId'])
-#       flight.save()
+@api_view(['POST'])
+def save_reservation(request):
+      flight = Flight.objects.get(id=request.data['flightId'])
+      flight.save()
        
-#       passenger=Passenger()
-#       passenger.firstName=request.data['firstName']
-#       passenger.lastName=request.data['lastName'] 
-#       passenger.email=request.data['email'] 
-#       passenger.phone=request.data['phone']
+      passenger=Passenger()
+      passenger.firstName=request.data['firstName']
+      passenger.lastName=request.data['lastName'] 
+      passenger.email=request.data['email'] 
+      passenger.phone=request.data['phone']
      
-#       passenger.save()
+      passenger.save()
       
-#       reservation=Reservation()
-#       reservation.flight=flight
-#       reservation.passenger=passenger
+      reservation=Reservation()
+      reservation.flight=flight
+      reservation.passenger=passenger
       
-#       reservation.save()
-#       return Response(status=status.HTTP_201_CREATED)
+      reservation.save()
+      return Response(status=status.HTTP_201_CREATED)
       
 
 class FlightViewSet(viewsets.ModelViewSet):
