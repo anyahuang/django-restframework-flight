@@ -28,6 +28,6 @@ urlpatterns = [
     path('flight/', include(router.urls)),
     path('find_flights/', views.find_flights),
    # path('save_reservation/', views.save_reservation),
-    
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     
 ]

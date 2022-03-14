@@ -5,6 +5,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status 
+from rest_framework import permissions
 
 # make a search flight function
 @api_view(['POST'])
@@ -40,7 +41,7 @@ null value in column "passanger_id" of relation "flightapp_reservation" violates
 class FlightViewSet(viewsets.ModelViewSet):
     queryset=Flight.objects.all()
     serializer_class=FlightSerializer
-    
+    permission_classes = [permissions.IsAuthenticated]
     
 class PassengerViewSet(viewsets.ModelViewSet):
     queryset=Passenger.objects.all()
@@ -49,3 +50,4 @@ class PassengerViewSet(viewsets.ModelViewSet):
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset=Reservation.objects.all()
     serializer_class=ReservationSerializer    
+    permission_classes = [permissions.IsAuthenticated]
